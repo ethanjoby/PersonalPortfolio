@@ -268,7 +268,7 @@ const projects = [
     topRight:drive,
   },
   {
-    name: "Veichle Detection",
+    name: "Object Detection on Street",
     description:
       "I developed an object detection model using the YOLO framework and a CNN, achieving a 90% accuracy rate. I also experimented with expert models such as VGG16, VGG19, ResNet50, and DenseNet121, gaining valuable insights. The model can currently take in and output videos and will be integrated with a live video camera using TensorFlow.js for real-time applications. Its accuracy rate and ability to handle multiple objects make it useful for computer vision, robotics, and autonomous systems. The real-time integration will be interesting to compare with the expert models.",
     tags: [
