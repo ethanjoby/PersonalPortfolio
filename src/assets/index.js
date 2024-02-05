@@ -25,10 +25,20 @@ import meta from "./company/meta.png";
 import shopify from "./company/shopify.png";
 import starbucks from "./company/starbucks.png";
 import tesla from "./company/tesla.png";
+import icuro from "./company/icuro.png";
+import LetsSolv from "./company/letssolv.png";
+import asdrp from "./company/asdrp.png";
+import origins from "./company/originsCustoms.png";
+import LearnToBe from "./company/learnToBe.png";
+import CAHSD from "./company/cahsd.png";
+import usaco from "./company/usaco.png";
+import colab from "./colab.png";
+import inspirit from "./inspirit.png";
+import drive from "./drive.png";
 
-import carrent from "./carrent.png";
-import jobit from "./jobit.png";
-import tripguide from "./tripguide.png";
+import carrent from "./videoSage.png";
+import jobit from "./roadMAP.png";
+import tripguide from "./videogame.png";
 
 export {
   logo,
@@ -59,4 +69,14 @@ export {
   carrent,
   jobit,
   tripguide,
+  icuro,
+  LetsSolv,
+  asdrp,
+  origins,
+  LearnToBe,
+  CAHSD, 
+  usaco,
+  colab,
+  inspirit,
+  drive
 };

@@ -47,11 +47,7 @@ const About = () => {
         variants={fadeIn("", "", 0.1, 1)}
         className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
       >
-        I'm a skilled software developer with experience in TypeScript and
-        JavaScript, and expertise in frameworks like React, Node.js, and
-        Three.js. I'm a quick learner and collaborate closely with clients to
-        create efficient, scalable, and user-friendly solutions that solve
-        real-world problems. Let's work together to bring your ideas to life!
+        Hello World! This one statement was the beginning of my journey into the wonderful world of Computer Science. Hey there, I’m Ethan Varghese and I am a motivated high schooler who has taken a keen interest in Computer Science and various sectors of this vast field. This resume outlines some of the cool things that I had the honor to take part in and gives a slight glimpse at my personality.
       </motion.p>
 
       <div className="mt-20 flex flex-wrap gap-10">
