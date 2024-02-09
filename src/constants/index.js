@@ -130,7 +130,7 @@ const experiences = [
     company_name: "ICURO",
     icon: icuro,
     iconBg: "#383E56",
-    date: "March 2020 - April 2021",
+    date: "May 2021 - June 2021",
     points: [
       "Contributed to the development of a showcased robot at the INTEL expo during my internship at ICURO that was tasked with",
       "Acquired proficiency in data collection tools like CVAT and Roboflow, facilitating efficient data labeling.",
@@ -143,7 +143,7 @@ const experiences = [
     company_name: "LetsSolv",
     icon: LetsSolv,
     iconBg: "white",
-    date: "Jan 2021 - Feb 2022",
+    date: "July 2023 - Sep 2023",
     points: [
       "Developed a sentiment analysis prototype that gauged sentiment from news portals, forums, and Twitter, storing results for dashboard reporting.",
       "Key contributor to user modules, admin functions, and sentiment exploration.",
@@ -155,7 +155,7 @@ const experiences = [
     company_name: "USACO",
     icon: usaco,
     iconBg: "white",
-    date: "Jan 2021 - Feb 2022",
+    date: "Jan 2024 - Feb 2024",
     points: [
       "Maintain and enhance USACO Guide and CPI websites, addressing bugs and implementing updates.",
       "Utilize React and adapt to technologies like Typescript, TailwindCSS, Gatsby, and Firebase.",
@@ -167,7 +167,7 @@ const experiences = [
     company_name: "ASDRP",
     icon: asdrp,
     iconBg: "white",
-    date: "Jan 2022 - Jan 2023",
+    date: "Jan 2022 - Present",
     points: [
       "Two-year ASDRP tenure focused on drug development and pharmacokinetics.",
       "Presented innovative findings at SCURR(Southern California Conferences for Undergraduate Research).",
@@ -184,7 +184,7 @@ const experiences = [
     company_name: "Origins Customs",
     icon: origins,
     iconBg: "#ffffff",
-    date: "Jan 2023 - Present",
+    date: "April 2023 - Present",
     points: [
       "Current CTO at Ethereal Apparel, overseeing technology for a thriving clothing business.",
       "Manages technological infrastructure and operations, ensuring the seamless functioning of the business website.",
@@ -196,7 +196,7 @@ const experiences = [
     company_name: "California HS Democrats Chapter",
     icon: CAHSD,
     iconBg: "white",
-    date: "Jan 2023 - Present",
+    date: "March 2023 - Present",
     points: [
       "Currently serving as Chief of Technology, responsible for overseeing and implementing technological solutions.",
       "Simultaneously hold the position of Director of Education, leading a Discord channel focused on educating youth.",
@@ -207,7 +207,7 @@ const experiences = [
     company_name: "Learn To Be",
     icon: LearnToBe,
     iconBg: "black",
-    date: "Jan 2023 - Present",
+    date: "Jan 2022 - Present",
     points: [
       "Created engaging learning environment by encouraging questions, sparking discussions.",
       "Planned curriculum based on individual academic needs.",
