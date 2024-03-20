@@ -39,6 +39,9 @@ import drive from "./drive.png";
 import carrent from "./videoSage.png";
 import jobit from "./roadMAP.png";
 import tripguide from "./videogame.png";
+import lingosage from "./lingosage.png";
+import Netlab from "./Netlab.png";
+import keepCalm from "./keepCalm.png";
 
 export {
   logo,
@@ -78,5 +81,9 @@ export {
   usaco,
   colab,
   inspirit,
-  drive
+  drive,
+  lingosage,
+  Netlab,
+  keepCalm,
+  
 };

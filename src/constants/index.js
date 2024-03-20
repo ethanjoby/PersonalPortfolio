@@ -32,7 +32,11 @@ import {
   usaco,
   colab,
   inspirit,
-  drive
+  drive,
+  lingosage,
+  Netlab,
+  keepCalm,
+
 } from "../assets";
 
 export const navLinks = [
@@ -126,6 +130,19 @@ const technologies = [
 
 const experiences = [
   {
+    title: "CEO",
+    company_name: "LingoSage",
+    icon: lingosage,
+    iconBg: "#181818",
+    date: "August 2023 - March 2024",
+    points: [
+      "Spearheaded the conceptualization and development of LingoSage during my tenure as a software engineer at a leading tech company, driven by a passion for democratizing access to knowledge and overcoming language barriers in education.",
+      "Leveraged my expertise in AI and machine learning gained through years of experience in the tech industry to design and implement the innovative AI dubbing technology that powers LingoSage, enabling real-time translation of educational content into multiple languages.",
+      "Collaborated with industry-leading APIs and technologies, such as Assembly AI, Google Translator, and Microsoft Azure TTS, to optimize functionality and enhance performance, leveraging my network and expertise to secure strategic partnerships and resources for LingoSage's development and growth.",
+      "Fostered a culture of innovation, collaboration, and continuous improvement within the LingoSage team, driving forward our mission to revolutionize learning and empower individuals worldwide to pursue knowledge without boundaries.",
+    ],
+  },
+  {
     title: "Artificial Intelligence Intern",
     company_name: "ICURO",
     icon: icuro,
@@ -149,17 +166,6 @@ const experiences = [
       "Key contributor to user modules, admin functions, and sentiment exploration.",
       "Implemented machine learning models (Vader Lexicon, scikit-Learn, TensorFlow) for enhanced analytical capabilities.",
       "Applied Python, Django, and MySQL skills for a robust sentiment analysis system.",
-    ],
-  },{
-    title: "Web Developer",
-    company_name: "USACO",
-    icon: usaco,
-    iconBg: "white",
-    date: "Jan 2024 - Feb 2024",
-    points: [
-      "Maintain and enhance USACO Guide and CPI websites, addressing bugs and implementing updates.",
-      "Utilize React and adapt to technologies like Typescript, TailwindCSS, Gatsby, and Firebase.",
-      "Contribute collaboratively through pull requests, actively participating in projects and issue resolution.",
     ],
   },
   {
@@ -203,6 +209,29 @@ const experiences = [
       "The Discord channel aims to inform young individuals about ways to voice their opinions and actively participate in civic matters.",
     ],
   },{
+    title: "Web Developer",
+    company_name: "USACO",
+    icon: usaco,
+    iconBg: "white",
+    date: "Jan 2024 - Feb 2024",
+    points: [
+      "Maintain and enhance USACO Guide and CPI websites, addressing bugs and implementing updates.",
+      "Utilize React and adapt to technologies like Typescript, TailwindCSS, Gatsby, and Firebase.",
+      "Contribute collaboratively through pull requests, actively participating in projects and issue resolution.",
+    ],
+  },{
+    title: "Mentee",
+    company_name: "Netlab-Dr.Low at Caltech",
+    icon: Netlab,
+    iconBg: "#2f2f30",
+    date: "Just Started",
+    points: [
+      "Embarking on a collaborative project with Dr. Low, an esteemed figure in computer science and electrical engineering at Caltech University, to modernize and optimize his website to reflect his groundbreaking work in the field.",
+      "Thrilled to be part of such an innovative and dynamic environment at Caltech University, where I will have the opportunity to contribute to groundbreaking advancements in computer science and electrical engineering under Dr. Low's guidance.",
+      "Enthusiastic about the opportunity to collaborate with cross-functional teams and contribute to groundbreaking research efforts at Caltech University, as I embark on this exciting journey of innovation and discovery under Dr. Low's mentorship.",
+    ],
+  },
+  {
     title: "Tutor",
     company_name: "Learn To Be",
     icon: LearnToBe,
@@ -246,25 +275,24 @@ const testimonials = [
 
 const projects = [
   {
-    name: "Video Sage",
-    description:
-      "Video Sage is a cutting-edge project aimed at democratizing knowledge through a seamless fusion of technology. Developed with a Flask backend, React frontend, and Firebase database, this groundbreaking tool revolutionizes the learning experience. The project takes in videos (such as college lectures) or PDFs in any language and performs a multi-faceted transformation. It first dubs the video in a selected language, utilizing Assembly AI for transcription and Movie.py along with Azure Text to Speech for audio synthesis. Simultaneously, it extracts intricate notes from the content and generates flashcards for key terms. Not stopping there, Video Sage is evolving with an upcoming premium feature—a sophisticated image generation capability that uses AI to create videos based on the extracted notes. Leveraging YouTube API for video downloads and Assembly AI API for audio transcription with translation into over two dozen languages, Video Sage ensures a global reach. The project doesn't just automate language translation; it employs state-of-the-art technologies like Bart for efficient video summarization and DeepL for language conversion. Furthermore, by integrating Microsoft Azure's Speech Cognitive Services for dubbed audio, Video Sage guarantees accessibility on a global scale. In essence, Video Sage is a comprehensive knowledge democratization tool, transforming traditional content into a dynamic, multilingual, and interactive learning experience.",
+    name: "KeepCalm",
+    description: "KeepCalm is a supportive online platform dedicated to mental health discussions and support groups. Built using Django framework, KeepCalm features multiple chat rooms focused on various mental health disorders, including personality disorders, Alzheimer's, autism, eating disorders, and depression. Users can engage in conversations, share experiences, and access resources related to mental well-being within specialized chat rooms. With a robust authentication system, KeepCalm prioritizes user privacy and confidentiality, ensuring a safe and supportive environment for individuals seeking assistance and community support.",
     tags: [
       {
-        name: "react",
-        color: "blue-text-gradient",
+        name: "django",
+        color: "green-text-gradient"
       },
       {
-        name: "flask",
-        color: "green-text-gradient",
+        name: "mental health",
+        color: "blue-text-gradient"
       },
       {
-        name: "firebase",
-        color: "pink-text-gradient",
-      },
+        name: "support groups",
+        color: "purple-text-gradient"
+      }
     ],
-    image: carrent,
-    source_code_link: "https://drive.google.com/file/d/1Ppdt52xS4Es1CNQXjkCZaEUzj9yw3fYr/view?usp=sharing",
+    image: keepCalm,
+    source_code_link: "https://drive.google.com/file/d/15L0OD94TkI6YrJWI7QUp0s6AGc_fTLmf/view?usp=sharing",
     topRight:drive,
   },
   {
