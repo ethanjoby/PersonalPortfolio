@@ -14,6 +14,7 @@ import { textVariant } from "../utils/motion";
 
 const ExperienceCard = ({ experience }) => {
   return (
+    
     <VerticalTimelineElement
       contentStyle={{
         background: "#1d1836",
@@ -23,6 +24,7 @@ const ExperienceCard = ({ experience }) => {
       date={experience.date}
       iconStyle={{ background: experience.iconBg }}
       icon={
+        <a href ={experience.link} target="_blank">
         <div className="flex justify-center items-center w-full h-full">
           <img
             src={experience.icon}
@@ -30,8 +32,10 @@ const ExperienceCard = ({ experience }) => {
             className="w-[60%] h-[60%] object-contain"
           />
         </div>
+        </a>
       }
     >
+      <a href ={experience.link} target="_blank">
       <div>
         <h3 className="text-white text-[24px] font-bold">{experience.title}</h3>
         <p
@@ -52,7 +56,9 @@ const ExperienceCard = ({ experience }) => {
           </li>
         ))}
       </ul>
+      </a>
     </VerticalTimelineElement>
+    
   );
 };
 

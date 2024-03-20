@@ -141,6 +141,7 @@ const experiences = [
       "Collaborated with industry-leading APIs and technologies, such as Assembly AI, Google Translator, and Microsoft Azure TTS, to optimize functionality and enhance performance, leveraging my network and expertise to secure strategic partnerships and resources for LingoSage's development and growth.",
       "Fostered a culture of innovation, collaboration, and continuous improvement within the LingoSage team, driving forward our mission to revolutionize learning and empower individuals worldwide to pursue knowledge without boundaries.",
     ],
+    link: "https://lingosage.vercel.app/"
   },
   {
     title: "Artificial Intelligence Intern",
@@ -154,6 +155,7 @@ const experiences = [
       "Utilized the YOLO framework to create an object detection algorithm for the robot.",
       "Played a crucial role in collecting and refining large datasets, essential for building accurate machine learning models.",
     ],
+    link:"https://www.intel.com/content/www/us/en/partner/showcase/offering/a5b3b000000krtFAAQ/mobile-robots-ai-edge-platform.html",
   },
   {
     title: "Software Engineering Intern",
@@ -166,7 +168,7 @@ const experiences = [
       "Key contributor to user modules, admin functions, and sentiment exploration.",
       "Implemented machine learning models (Vader Lexicon, scikit-Learn, TensorFlow) for enhanced analytical capabilities.",
       "Applied Python, Django, and MySQL skills for a robust sentiment analysis system.",
-    ],
+    ],link:"https://letssolv.com/",
   },
   {
     title: "Student Researcher",
@@ -183,7 +185,7 @@ const experiences = [
       "Emphasized DNA strand's geometric aspects, revealing common attributes across protein classes.",
       "Implemented methodologies to map specific features for protein family identification.",
       "Research holds promise in biomedical applications, particularly in drug development."
-    ],
+    ],link:"https://sites.google.com/asdrp.org/downing/ml-dd",
   },
  {
     title: "CTO",
@@ -196,7 +198,7 @@ const experiences = [
       "Manages technological infrastructure and operations, ensuring the seamless functioning of the business website.",
       "Built custom clothes website using vue JS and make bulk shipping orders",
       "5,000 dollars in profit this year",
-    ],
+    ],link:"https://ethereal-apparel209.myshopify.com/",
   },{
     title: "CTO and Director of Education",
     company_name: "California HS Democrats Chapter",
@@ -207,8 +209,8 @@ const experiences = [
       "Currently serving as Chief of Technology, responsible for overseeing and implementing technological solutions.",
       "Simultaneously hold the position of Director of Education, leading a Discord channel focused on educating youth.",
       "The Discord channel aims to inform young individuals about ways to voice their opinions and actively participate in civic matters.",
-    ],
-  },{
+    ],link:"https://cahsdemocrats.netlify.app/",
+  },/*{
     title: "Web Developer",
     company_name: "USACO",
     icon: usaco,
@@ -219,7 +221,7 @@ const experiences = [
       "Utilize React and adapt to technologies like Typescript, TailwindCSS, Gatsby, and Firebase.",
       "Contribute collaboratively through pull requests, actively participating in projects and issue resolution.",
     ],
-  },{
+  },*/{
     title: "Mentee",
     company_name: "Netlab-Dr.Low at Caltech",
     icon: Netlab,
@@ -229,7 +231,7 @@ const experiences = [
       "Embarking on a collaborative project with Dr. Low, an esteemed figure in computer science and electrical engineering at Caltech University, to modernize and optimize his website to reflect his groundbreaking work in the field.",
       "Thrilled to be part of such an innovative and dynamic environment at Caltech University, where I will have the opportunity to contribute to groundbreaking advancements in computer science and electrical engineering under Dr. Low's guidance.",
       "Enthusiastic about the opportunity to collaborate with cross-functional teams and contribute to groundbreaking research efforts at Caltech University, as I embark on this exciting journey of innovation and discovery under Dr. Low's mentorship.",
-    ],
+    ],link:"http://netlab.caltech.edu/",
   },
   {
     title: "Tutor",
@@ -242,7 +244,7 @@ const experiences = [
       "Planned curriculum based on individual academic needs.",
       "Met with parents to discuss youth progress and potential.",
       "Provided extra support for struggling students by tutoring in Math and Science."
-    ],
+    ],link:"https://www.learntobe.org/",
   }
 ];
 
