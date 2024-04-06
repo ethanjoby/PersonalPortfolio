@@ -194,11 +194,11 @@ const experiences = [
     iconBg: "#ffffff",
     date: "April 2023 - Present",
     points: [
-      "Current CTO at Ethereal Apparel, overseeing technology for a thriving clothing business.",
+      "Current CTO at Origins Customs, overseeing technology for a thriving clothing business.",
       "Manages technological infrastructure and operations, ensuring the seamless functioning of the business website.",
       "Built custom clothes website using vue JS and make bulk shipping orders",
-      "5,000 dollars in profit this year",
-    ],link:"https://ethereal-apparel209.myshopify.com/",
+      "5,000 dollars in profit per order",
+    ],link:"https://origin-customs.vercel.app/",
   },{
     title: "CTO and Director of Education",
     company_name: "California HS Democrats Chapter",
