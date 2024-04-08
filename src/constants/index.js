@@ -158,6 +158,20 @@ const experiences = [
     link:"https://www.intel.com/content/www/us/en/partner/showcase/offering/a5b3b000000krtFAAQ/mobile-robots-ai-edge-platform.html",
   },
   {
+    title: "Engineering Intern",
+    company_name: "Netlab-Dr.Low at Caltech",
+    icon: Netlab,
+    iconBg: "#2f2f30",
+    date: "Just Started",
+    points: [
+      "Currently serving as the only high school intern at Netlab",
+      "Working on various projects and am extremely excited to work on several projects under the guidance of Dr. Low",
+      "Completed first project which was revamping the current website and making it more easily maintainable",
+      "Going to work on electrical outage detection and emergency notification tool for Caltech facilities",
+      "Extremely excited to continue to work on exciting projects and research in the future",
+    ],link:"http://netlab.caltech.edu/",
+  },
+  {
     title: "Software Engineering Intern",
     company_name: "LetsSolv",
     icon: LetsSolv,
@@ -195,10 +209,12 @@ const experiences = [
     date: "April 2023 - Present",
     points: [
       "Current CTO at Origins Customs, overseeing technology for a thriving clothing business.",
+      "Receiving 10+ orders per year each of which brings in nearly $1,000 in profits",
       "Manages technological infrastructure and operations, ensuring the seamless functioning of the business website.",
-      "Built custom clothes website using vue JS and make bulk shipping orders",
-      "5,000 dollars in profit per order",
-    ],link:"https://origin-customs.vercel.app/",
+      "Created clean custom clothing website which can take in custom orders and sends emails to notify the faculty as well as the customer thanking them for their order.",
+      "The faculty are also prompted to check out clean custom admin panel with all orders that have been taken",
+      "Utilized Vite/React, typescript, tailwindCSS, Firebase, and emailJS",
+    ],link:"https://originscustoms.com/",
   },{
     title: "CTO and Director of Education",
     company_name: "California HS Democrats Chapter",
@@ -221,18 +237,7 @@ const experiences = [
       "Utilize React and adapt to technologies like Typescript, TailwindCSS, Gatsby, and Firebase.",
       "Contribute collaboratively through pull requests, actively participating in projects and issue resolution.",
     ],
-  },*/{
-    title: "Mentee",
-    company_name: "Netlab-Dr.Low at Caltech",
-    icon: Netlab,
-    iconBg: "#2f2f30",
-    date: "Just Started",
-    points: [
-      "Embarking on a collaborative project with Dr. Low, an esteemed figure in computer science and electrical engineering at Caltech University, to modernize and optimize his website to reflect his groundbreaking work in the field.",
-      "Thrilled to be part of such an innovative and dynamic environment at Caltech University, where I will have the opportunity to contribute to groundbreaking advancements in computer science and electrical engineering under Dr. Low's guidance.",
-      "Enthusiastic about the opportunity to collaborate with cross-functional teams and contribute to groundbreaking research efforts at Caltech University, as I embark on this exciting journey of innovation and discovery under Dr. Low's mentorship.",
-    ],link:"http://netlab.caltech.edu/",
-  },
+  },*/
   {
     title: "Tutor",
     company_name: "Learn To Be",
