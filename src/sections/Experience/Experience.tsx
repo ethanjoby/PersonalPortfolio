@@ -76,11 +76,13 @@ export function Experience() {
                   </p>
                 </div>
 
-                <ul className="experience-description" role="list">
-                  {role.description.map((line) => (
-                    <li key={line}>{withFigures(line)}</li>
-                  ))}
-                </ul>
+                {role.description.length > 0 ? (
+                  <ul className="experience-description" role="list">
+                    {role.description.map((line) => (
+                      <li key={line}>{withFigures(line)}</li>
+                    ))}
+                  </ul>
+                ) : null}
 
                 {count > 0 ? (
                   <div className="experience-media">

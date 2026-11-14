@@ -316,6 +316,11 @@
     justify-content: flex-end;
   }
 
+  /* A role with nothing but its logo, title and dates: no second row, so no empty gap under them. */
+  .experience-item:not(:has(.experience-description, .experience-media)) {
+    grid-template-rows: auto;
+  }
+
   /* No photos or video: what he did takes the right column. */
   .experience-item[data-media='false'] .experience-description {
     grid-area: 1 / 2 / span 2;

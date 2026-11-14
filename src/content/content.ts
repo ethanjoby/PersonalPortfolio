@@ -176,23 +176,8 @@ export const roles: Role[] = [
     status: 'incoming',
     logo: '/logos/spacex.svg',
     mark: '/logos/spacex-mark.svg',
-    description: ['Working on satellite communication software for the U.S. government.'],
-    photos: [
-      {
-        src: '/photos/spacex-1.jpg',
-        width: 1179,
-        height: 1460,
-        alt: 'Two people in freefall on a tandem skydive under an airplane wing, with desert far below.',
-        caption: 'On a tandem skydive.',
-      },
-      {
-        src: '/photos/spacex-2.jpg',
-        width: 1600,
-        height: 900,
-        alt: 'A stack of flat satellites in orbit, seen from an onboard camera, with the curve of the Earth behind it.',
-        caption: 'A stack of satellites in orbit, before deployment.',
-      },
-    ],
+    // Nothing but the logo, the role and the "Incoming" tag, at the owner's request: no bullets, no photos.
+    description: [],
   },
   {
     id: 'replit',
@@ -250,13 +235,6 @@ export const roles: Role[] = [
         height: 1200,
         alt: 'A desk monitor showing a dark web app: a file tree on the left, a scatter plot in the middle and a chat assistant on the right.',
         caption: 'The platform drawing a neutron-density crossplot from a chat request.',
-      },
-      {
-        src: '/photos/chevron-3.jpg',
-        width: 1200,
-        height: 1600,
-        alt: 'A barbecue tray on a wooden table: brisket, sliced bread, pickled onions, mac and cheese and corn pudding.',
-        caption: 'Texas barbecue.',
       },
     ],
   },
