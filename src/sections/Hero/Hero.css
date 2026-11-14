@@ -1,0 +1,64 @@
+.hero {
+  padding-top: calc(var(--nav-h) + var(--s-8));
+}
+
+.hero-grid {
+  display: grid;
+  gap: var(--s-7);
+  align-items: center;
+}
+
+.hero-copy {
+  display: grid;
+  gap: var(--s-5);
+  justify-items: start;
+}
+
+.hero-intro {
+  display: grid;
+  gap: var(--s-4);
+  max-width: 35rem;
+}
+
+/* The places he has worked, and what he is aiming at, step up from the reading tone to full white. */
+.hero-intro strong {
+  color: var(--tone-fg);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+
+/*
+ * The photo is four wide for five tall and is cropped to that box, never stretched. The crop keeps the upper part
+ * of the picture, where his face is.
+ * Stacked (phone, tablet): the full width up to 24rem.
+ */
+.hero-portrait {
+  display: block;
+  width: min(100%, 24rem);
+  height: auto;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--r-3);
+  object-fit: cover;
+  object-position: 50% 25%;
+}
+
+/*
+ * Side by side: the intro on the left, the photo on the right, flush with the right edge of the frame. The photo is
+ * a little smaller than its column, and never taller than the screen below the nav.
+ */
+@media (min-width: 64rem) {
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: var(--s-8);
+  }
+
+  .hero-portrait {
+    justify-self: end;
+    width: min(100%, 29rem);
+    max-height: calc(100svh - var(--nav-h) - var(--s-8) - var(--s-7));
+  }
+}

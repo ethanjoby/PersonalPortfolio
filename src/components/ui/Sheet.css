@@ -1,0 +1,163 @@
+@layer base, ui, util;
+
+@layer ui {
+  .sheet {
+    --sheet-pad: var(--s-5);
+    --sheet-key-w: 5.5rem;
+    --sheet-value-w: 11rem;
+
+    /* Rows respond to the width of the sheet itself (see the container rules below). */
+    container: sheet / inline-size;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid var(--tone-line);
+    border-radius: var(--r-2);
+    background-color: var(--tone-surface);
+    text-align: left;
+  }
+
+  /* Paper needs no outline: the fill is the edge. */
+  .sheet[data-tone='paper'] {
+    border-color: transparent;
+  }
+
+  /* Header strip: mono, title left, readout right, one hairline under it. */
+  .sheet-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--s-1) var(--s-4);
+    padding: var(--s-3) var(--sheet-pad);
+    border-bottom: 1px solid var(--tone-line);
+    font-family: var(--font-mono);
+    font-size: var(--t-label);
+    line-height: var(--t-label-lh);
+    letter-spacing: var(--t-label-ls);
+    text-transform: uppercase;
+  }
+
+  .sheet-title {
+    color: var(--tone-fg);
+  }
+
+  .sheet-meta {
+    color: var(--tone-fg-3);
+  }
+
+  .sheet-rows {
+    padding-block: var(--s-2);
+  }
+
+  /* Narrow sheet: the key sits above its value. */
+  .sheet-row {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--s-1) var(--s-4);
+    padding: var(--s-2) var(--sheet-pad);
+  }
+
+  .sheet-key {
+    color: var(--tone-fg-3);
+    font-family: var(--font-mono);
+    font-size: var(--t-label);
+    line-height: var(--t-label-lh);
+    letter-spacing: var(--t-label-ls);
+    text-transform: uppercase;
+  }
+
+  .sheet-value {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px var(--s-4);
+    min-width: 0;
+    color: var(--tone-fg);
+    font-size: var(--t-body);
+    line-height: var(--t-body-lh);
+    letter-spacing: var(--t-body-ls);
+  }
+
+  .sheet-note {
+    color: var(--tone-fg-3);
+    font-size: var(--t-small);
+    line-height: var(--t-small-lh);
+    letter-spacing: var(--t-small-ls);
+  }
+
+  /* From 24rem of sheet: key and value side by side, on one baseline. */
+  @container sheet (min-width: 24rem) {
+    .sheet-row {
+      grid-template-columns: var(--sheet-key-w) minmax(0, 1fr);
+      align-items: baseline;
+    }
+  }
+
+  /* From 40rem of sheet: the note becomes a third column, so every row is one line. */
+  @container sheet (min-width: 40rem) {
+    .sheet-value-split {
+      grid-template-columns: var(--sheet-value-w) minmax(0, 1fr);
+      align-items: baseline;
+    }
+  }
+
+  /* Link rows: the whole row is the target, an arrow says so, the fill answers the pointer. */
+  .sheet-row-link {
+    min-height: var(--hit-min);
+    padding-right: calc(var(--sheet-pad) + var(--s-6));
+    transition: background-color var(--dur-hover-out) var(--ease-feedback);
+  }
+
+  .sheet-link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .sheet-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  /* Focus: the ring is drawn on the whole row, inside the sheet's clipped edge, not on the text. */
+  .sheet-link:focus-visible { outline: none; }
+
+  .sheet-link:focus-visible::after {
+    outline: 2px solid var(--tone-ring);
+    outline-offset: -2px;
+  }
+
+  .sheet-arrow {
+    position: absolute;
+    top: 50%;
+    right: var(--sheet-pad);
+    margin-top: -0.5em;
+    color: var(--tone-fg-3);
+    transition:
+      translate var(--dur-hover-out) var(--ease-feedback),
+      color var(--dur-hover-out) var(--ease-feedback);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .sheet-row-link:hover {
+      background-color: var(--tone-surface-2);
+      transition-duration: var(--dur-hover-in);
+    }
+
+    .sheet-row-link:hover .sheet-arrow {
+      color: var(--tone-fg);
+      translate: var(--nudge-x) var(--nudge-y);
+      transition-duration: var(--dur-hover-in);
+    }
+  }
+
+  .sheet-row-link:active {
+    background-color: var(--tone-surface-2);
+    opacity: var(--press-opacity);
+  }
+
+  .sheet-foot {
+    padding: var(--s-3) var(--sheet-pad) var(--s-4);
+    border-top: 1px solid var(--tone-line);
+  }
+}

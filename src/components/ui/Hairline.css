@@ -1,0 +1,20 @@
+@layer base, ui, util;
+
+@layer ui {
+  .hairline {
+    flex: none;
+    width: 100%;
+    height: 1px;
+    background-color: var(--tone-line);
+  }
+
+  .hairline-strong {
+    background-color: var(--tone-line-strong);
+  }
+
+  .hairline-vertical {
+    align-self: stretch;
+    width: 1px;
+    height: auto;
+  }
+}

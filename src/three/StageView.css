@@ -1,0 +1,132 @@
+/*
+ * StageView: the container of a wire scene, its canvas, and its DOM label layer.
+ * The engine (src/three/core) adds the canvas and the labels; these rules style them.
+ */
+
+.stageview {
+  position: relative;
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  overflow: hidden;
+  contain: layout paint;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+
+  --stageview-label: var(--wire-label, rgba(255, 255, 255, 0.8));
+  --stageview-label-sub: var(--fg-3, rgba(255, 255, 255, 0.64));
+  --stageview-label-on: var(--fg, #ffffff);
+  --stageview-leader: var(--wire-front, rgba(255, 255, 255, 0.46));
+}
+
+.stageview[data-tone='onPaper'] {
+  --stageview-label: var(--wire-label-ink, rgba(14, 14, 13, 0.76));
+  --stageview-label-sub: var(--ink-2, rgba(14, 14, 13, 0.76));
+  --stageview-label-on: var(--ink, #0e0e0d);
+  --stageview-leader: var(--wire-front-ink, rgba(14, 14, 13, 0.52));
+}
+
+/* Horizontal drags rotate the scene; vertical ones still scroll the page. */
+.stageview[data-interactive='true'] {
+  touch-action: pan-y;
+}
+
+.stageview[data-cursor='grab'] {
+  cursor: grab;
+}
+
+.stageview[data-cursor='grabbing'] {
+  cursor: grabbing;
+}
+
+.stageview[data-cursor='pointer'] {
+  cursor: pointer;
+}
+
+.stageview-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  pointer-events: none;
+}
+
+.stageview-labels {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  font-family: var(--font-mono, ui-monospace, 'SF Mono', Menlo, Consolas, monospace);
+  font-size: var(--t-micro, 0.6875rem);
+  font-weight: 400;
+  line-height: var(--t-micro-lh, 1.3);
+  letter-spacing: var(--t-micro-ls, 0.05em);
+  text-transform: uppercase;
+  color: var(--stageview-label);
+}
+
+.stageview-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.55em;
+  white-space: nowrap;
+  opacity: 0;
+}
+
+/* Labels that move every frame get their own layer; still ones do not need it. */
+.stageview-labels[data-live='true'] .stageview-label {
+  will-change: transform;
+}
+
+.stageview-label-sub {
+  color: var(--stageview-label-sub);
+}
+
+.stageview-label.is-on .stageview-label-text {
+  color: var(--stageview-label-on);
+}
+
+/* The leader: a 1px hairline between the point and the text. --lx and --ly are whole pixels set by the engine. */
+.stageview-label-leader {
+  position: absolute;
+  background: var(--stageview-leader);
+}
+
+.stageview-label[data-side='right'] > .stageview-label-leader {
+  right: calc(100% + 4px);
+  top: var(--ly, 50%);
+  width: var(--leader, 12px);
+  height: 1px;
+}
+
+.stageview-label[data-side='left'] > .stageview-label-leader {
+  left: calc(100% + 4px);
+  top: var(--ly, 50%);
+  width: var(--leader, 12px);
+  height: 1px;
+}
+
+.stageview-label[data-side='top'] > .stageview-label-leader {
+  top: calc(100% + 4px);
+  left: var(--lx, 50%);
+  width: 1px;
+  height: var(--leader, 12px);
+}
+
+.stageview-label[data-side='bottom'] > .stageview-label-leader {
+  bottom: calc(100% + 4px);
+  left: var(--lx, 50%);
+  width: 1px;
+  height: var(--leader, 12px);
+}
+
+@media (forced-colors: active) {
+  .stageview-label-leader {
+    background: CanvasText;
+  }
+}

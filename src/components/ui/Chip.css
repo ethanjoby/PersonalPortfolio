@@ -1,0 +1,32 @@
+@layer base, ui, util;
+
+@layer ui {
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    flex: none;
+    min-height: var(--s-5);
+    padding: 0 var(--s-2);
+    border: 1px solid var(--tone-line-strong);
+    border-radius: var(--r-1);
+    color: var(--tone-fg-3);
+    font-family: var(--font-mono);
+    font-size: var(--t-micro);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: var(--t-micro-ls);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .chip-fill {
+    border-color: transparent;
+    background-color: var(--tone-fill);
+    color: var(--tone-fg-2);
+  }
+
+  .chip-dashed {
+    border-style: dashed;
+    border-color: var(--tone-fg-4);
+  }
+}

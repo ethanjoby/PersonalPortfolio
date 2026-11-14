@@ -1,0 +1,25 @@
+@layer base, ui, util;
+
+@layer ui {
+  .label {
+    display: block;
+    color: var(--tone-fg-3);
+    font-family: var(--font-mono);
+    font-size: var(--t-label);
+    font-weight: 400;
+    line-height: var(--t-label-lh);
+    letter-spacing: var(--t-label-ls);
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+
+  span.label {
+    display: inline-block;
+  }
+
+  .label-micro {
+    font-size: var(--t-micro);
+    line-height: var(--t-micro-lh);
+    letter-spacing: var(--t-micro-ls);
+  }
+}

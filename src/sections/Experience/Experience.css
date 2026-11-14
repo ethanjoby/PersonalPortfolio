@@ -1,0 +1,349 @@
+/*
+ * Experience: one row per role, across the whole frame.
+ * Left: the company's logo in its own colors, the role, the dates.
+ * Right: the photos and videos from that role, in color, all at one height; what he did sits under the role.
+ * A role with no media has what he did on the right instead, so the right half is never empty.
+ */
+
+.experience-list {
+  margin-top: var(--s-7);
+}
+
+.experience-item {
+  display: grid;
+  gap: var(--s-5);
+  padding-block: var(--s-7);
+  border-top: 1px solid var(--line);
+  scroll-margin-top: calc(var(--nav-h) + var(--s-4));
+}
+
+.experience-item:last-child {
+  padding-bottom: 0;
+}
+
+/* ------------------------------------------------------------------ copy */
+
+.experience-head {
+  display: grid;
+  gap: var(--s-2);
+  align-content: start;
+  justify-items: start;
+  min-width: 0;
+}
+
+.experience-company {
+  margin-bottom: var(--s-3);
+  line-height: 0;
+}
+
+.experience-logo {
+  width: auto;
+  max-width: 100%;
+  height: var(--experience-logo-h, 2rem);
+  aspect-ratio: var(--experience-logo-ar, auto);
+}
+
+.experience-role {
+  color: var(--fg);
+  font-size: var(--t-lead);
+  font-weight: 500;
+  line-height: var(--t-lead-lh);
+  letter-spacing: var(--t-lead-ls);
+}
+
+.experience-team {
+  color: var(--fg-3);
+  font-weight: 400;
+}
+
+.experience-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2) var(--s-3);
+}
+
+/* The current role carries the one accent. */
+.experience-now {
+  background-color: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+.experience-description {
+  display: grid;
+  gap: var(--s-3);
+  align-content: start;
+  max-width: 40rem;
+  min-width: 0;
+  color: var(--fg-2);
+}
+
+.experience-description li {
+  --experience-dot: 5px;
+  position: relative;
+  padding-left: calc(var(--s-4) + var(--s-1));
+}
+
+/* A round bullet, centered on the first line of text. */
+.experience-description li::before {
+  content: '';
+  position: absolute;
+  top: calc(0.5lh - var(--experience-dot) / 2);
+  left: 2px;
+  width: var(--experience-dot);
+  height: var(--experience-dot);
+  border-radius: 50%;
+  background-color: var(--fg-3);
+}
+
+/* The figure a reader should catch first steps up from the reading tone to full white, as in the intro. */
+.experience-description strong {
+  color: var(--fg);
+}
+
+/* ----------------------------------------------------------------- media */
+
+.experience-media {
+  min-width: 0;
+  margin-top: var(--s-3);
+  container-type: inline-size;
+}
+
+.experience-media-row {
+  --experience-gap: var(--s-3);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--experience-gap);
+}
+
+/* Where container units are missing: share the row by proportion, which also gives every item the same height. */
+.experience-figure {
+  display: grid;
+  flex: var(--experience-ar) 1 0;
+  gap: var(--s-2);
+  min-width: 0;
+}
+
+/*
+ * One height for everything in the row: as tall as the cap allows, or as tall as the column's width allows
+ * once the widths of all the items (height times each one's proportion) and the gaps between them have to fit.
+ */
+@supports (width: 1cqw) {
+  .experience-media-row {
+    --experience-h: min(
+      var(--experience-media-max, 20rem),
+      (100cqw - (var(--experience-count) - 1) * var(--experience-gap)) / var(--experience-sum)
+    );
+  }
+
+  .experience-figure {
+    flex: none;
+    width: calc(var(--experience-h) * var(--experience-ar));
+  }
+
+  /* On a phone, a row that holds a video stacks its items instead of shrinking the video to a thumbnail. */
+  @container (max-width: 26rem) {
+    .experience-media-row:has(video) {
+      flex-wrap: wrap;
+    }
+
+    .experience-media-row:has(video) > .experience-figure {
+      width: min(100cqw, var(--experience-media-max, 20rem) * var(--experience-ar));
+    }
+  }
+}
+
+.experience-frame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: var(--experience-ar);
+  border: 1px solid var(--line);
+  border-radius: var(--r-3);
+  background-color: var(--surface);
+}
+
+.experience-frame > img,
+.experience-frame > video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/*
+ * A picture that is the cover of a document (a slide deck): the whole frame opens it, and a small label in the
+ * corner says so. Dark pill, white text: it reads on a white slide and on a dark photo.
+ */
+.experience-open {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: var(--s-3);
+  border-radius: inherit;
+  color: var(--fg);
+  text-decoration: none;
+}
+
+/* Where :has() is missing, the ring of whatever is focused inside a frame is drawn inside it, clear of the clipping. */
+.experience-open:focus-visible,
+.experience-play:focus-visible,
+.experience-frame > video:focus-visible {
+  outline-offset: -6px;
+}
+
+/*
+ * Otherwise the ring goes around the frame itself: on the dark page it reads whatever the picture is (a white ring
+ * inside a white poster does not), and the frame's own clipping cannot cut it off. Both rules need :has(), so a
+ * browser without it drops them together and keeps the inside ring above.
+ */
+.experience-frame:has(:focus-visible) {
+  outline: 2px solid var(--tone-ring);
+  outline-offset: 2px;
+}
+
+.experience-frame:has(:focus-visible) > :focus-visible {
+  outline: none;
+}
+
+.experience-open-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-height: var(--control-h);
+  padding-inline: var(--s-3);
+  border: 1px solid color-mix(in srgb, var(--fg) 30%, transparent);
+  border-radius: var(--r-2);
+  background-color: color-mix(in srgb, var(--bg) 82%, transparent);
+  font-size: var(--t-small);
+  font-weight: 500;
+  line-height: var(--t-small-lh);
+  letter-spacing: var(--t-small-ls);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  transition: background-color var(--dur-hover-out) var(--ease-feedback);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .experience-open:hover .experience-open-label {
+    background-color: var(--bg);
+    transition-duration: var(--dur-hover-in);
+  }
+}
+
+/* The play button covers the poster until the video is started. */
+.experience-play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border-radius: inherit;
+  background-image: linear-gradient(to top, color-mix(in srgb, var(--bg) 45%, transparent), transparent 55%);
+}
+
+/* Dark disc, white mark, light ring: it reads on a bright poster and on a dark one. */
+.experience-play-disc {
+  display: grid;
+  place-items: center;
+  /* Never more than half as wide as a narrow (portrait) video. */
+  width: min(3.5rem, 50%);
+  height: auto;
+  aspect-ratio: 1;
+  padding-left: 2px;
+  border: 1px solid color-mix(in srgb, var(--fg) 70%, transparent);
+  border-radius: 50%;
+  background-color: color-mix(in srgb, var(--bg) 72%, transparent);
+  color: var(--fg);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  transition:
+    transform var(--dur-hover-out) var(--ease-feedback),
+    background-color var(--dur-hover-out) var(--ease-feedback);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .experience-play:hover .experience-play-disc {
+    background-color: var(--bg);
+    transform: scale(1.06);
+    transition-duration: var(--dur-hover-in);
+  }
+}
+
+.experience-play:active .experience-play-disc {
+  transform: scale(var(--press-scale));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experience-play-disc {
+    transition: none;
+  }
+
+  .experience-play:hover .experience-play-disc {
+    transform: none;
+  }
+}
+
+/* --------------------------------------------------------------- desktop */
+
+/* Two columns that start on the same two edges in every row. */
+@media (min-width: 64rem) {
+  .experience-item {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    grid-template-rows: auto 1fr;
+    column-gap: var(--s-8);
+    align-items: start;
+  }
+
+  .experience-head {
+    grid-area: 1 / 1;
+  }
+
+  .experience-description {
+    grid-area: 2 / 1;
+  }
+
+  .experience-media {
+    grid-area: 1 / 2 / span 2;
+    margin-top: 0;
+  }
+
+  /*
+   * The height cap follows the column: a single photo that is 3:2 or wider spans the whole column, like the rows
+   * with several items. Only something taller than that (one portrait photo) stops short, and it ends on the right edge.
+   */
+  .experience-media-row {
+    --experience-media-max: calc(100cqw / 1.5);
+    justify-content: flex-end;
+  }
+
+  /* No photos or video: what he did takes the right column. */
+  .experience-item[data-media='false'] .experience-description {
+    grid-area: 1 / 2 / span 2;
+  }
+
+  /*
+   * A role that asks for it (`mediaHeight: 'text'`): its photos and videos together are exactly as tall as the text
+   * beside them. The block takes no height of its own, so the text alone sets the height of the row; the items share
+   * the column's width in proportion to their shapes and are cropped to fill, never stretched.
+   */
+  .experience-item[data-media-height='text'] .experience-media {
+    position: relative;
+    align-self: stretch;
+  }
+
+  .experience-item[data-media-height='text'] .experience-media-row {
+    position: absolute;
+    inset: 0;
+    align-items: stretch;
+  }
+
+  .experience-item[data-media-height='text'] .experience-figure {
+    flex: var(--experience-ar) 1 0;
+    grid-template-rows: minmax(0, 1fr);
+    width: auto;
+  }
+
+  .experience-item[data-media-height='text'] .experience-frame {
+    aspect-ratio: auto;
+  }
+}

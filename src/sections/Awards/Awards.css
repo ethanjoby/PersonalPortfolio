@@ -1,0 +1,20 @@
+.awards-list {
+  margin-top: var(--s-7);
+  padding: 0;
+}
+
+.awards-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-1) var(--s-6);
+  padding-block: var(--s-4);
+  border-top: 1px solid var(--line);
+}
+
+/* Two columns: the name, then its description. */
+@media (min-width: 48rem) {
+  .awards-row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    align-items: baseline;
+  }
+}
