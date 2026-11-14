@@ -130,10 +130,11 @@
  */
 @supports (width: 1cqw) {
   .experience-media-row {
-    --experience-h: min(
-      var(--experience-media-max, 20rem),
+    /* The height at which the items and the gaps between them take exactly the column's width. */
+    --experience-fit: calc(
       (100cqw - (var(--experience-count) - 1) * var(--experience-gap)) / var(--experience-sum)
     );
+    --experience-h: min(var(--experience-media-max, 20rem), var(--experience-fit));
   }
 
   .experience-figure {
@@ -308,12 +309,20 @@
   }
 
   /*
-   * The height cap follows the column: a single photo that is 3:2 or wider spans the whole column, like the rows
-   * with several items. Only something taller than that (one portrait photo) stops short, and it ends on the right edge.
+   * The height cap follows the column: a single photo that is 3:2 or wider spans the whole column. Only a single
+   * item taller than that (one portrait photo) stops short, and it ends on the right edge.
    */
   .experience-media-row {
     --experience-media-max: calc(100cqw / 1.5);
     justify-content: flex-end;
+  }
+
+  /*
+   * Several items always span the whole column, however tall that makes them (two portrait photos side by side),
+   * so every row with more than one item ends on the same two edges.
+   */
+  .experience-media-row:has(> :nth-child(2)) {
+    --experience-media-max: var(--experience-fit);
   }
 
   /* A role with nothing but its logo, title and dates: no second row, so no empty gap under them. */
