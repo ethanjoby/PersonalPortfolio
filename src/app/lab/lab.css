@@ -1,0 +1,256 @@
+/* Wire engine lab (development only). Tokens come from src/styles/tokens.css. */
+
+body:has(.lab) {
+  margin: 0;
+  background: var(--bg);
+}
+
+.lab {
+  min-height: 100vh;
+  padding-block: var(--s-7) var(--s-9);
+  background: var(--bg);
+  color: var(--fg-2);
+  font-family: var(--font-text);
+  font-size: var(--t-small);
+  line-height: var(--t-small-lh);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+.lab *,
+.lab *::before,
+.lab *::after {
+  box-sizing: border-box;
+}
+
+.lab-head,
+.lab-section {
+  width: min(var(--frame), 100% - 2 * var(--gutter));
+  margin-inline: auto;
+}
+
+.lab-head {
+  display: grid;
+  gap: var(--s-6);
+  margin-block-end: var(--s-8);
+}
+
+.lab-label {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--t-label);
+  font-weight: 400;
+  line-height: var(--t-label-lh);
+  letter-spacing: var(--t-label-ls);
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+
+.lab-title {
+  margin: var(--s-3) 0 0;
+  font-family: var(--font-display);
+  font-size: var(--t-h2);
+  font-weight: 400;
+  line-height: var(--t-h2-lh);
+  letter-spacing: var(--t-h2-ls);
+  color: var(--fg);
+}
+
+.lab-readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 1px;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--r-2);
+  background: var(--line);
+}
+
+.lab-stat {
+  display: grid;
+  gap: var(--s-2);
+  padding: var(--s-4);
+  background: var(--surface);
+}
+
+.lab-stat dt {
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  line-height: var(--t-micro-lh);
+  letter-spacing: var(--t-micro-ls);
+  text-transform: uppercase;
+  color: var(--fg-4);
+}
+
+.lab-stat dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--t-code);
+  font-variant-numeric: tabular-nums;
+  color: var(--fg);
+}
+
+.lab-section {
+  margin-block-start: var(--s-9);
+}
+
+.lab-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3) var(--s-5);
+  min-height: 36px;
+  margin-block-end: var(--s-4);
+}
+
+.lab-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+
+.lab-note {
+  margin: 0;
+  color: var(--fg-3);
+}
+
+.lab-button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 var(--s-3);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-1);
+  background: transparent;
+  color: var(--fg-2);
+  font: 500 var(--t-small) / 1 var(--font-text);
+  cursor: pointer;
+  transition: opacity var(--dur-hover-out) var(--ease-feedback);
+}
+
+.lab-button[aria-pressed='true'] {
+  border-color: var(--paper);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.lab-button:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.lab-button:active {
+  opacity: 0.9;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .lab-button:hover {
+    opacity: 0.8;
+    transition-duration: var(--dur-hover-in);
+  }
+}
+
+@media (pointer: coarse) {
+  .lab-button {
+    min-height: 44px;
+  }
+}
+
+/* The orbit plot runs the full width of the viewport, like the hero will. */
+.lab-orbit {
+  position: relative;
+  width: 100vw;
+  height: clamp(420px, 44vw, 680px);
+  margin-inline-start: calc(50% - 50vw);
+  border-block: 1px solid var(--line);
+}
+
+/* A soft fade at the very bottom: a mask on the canvas, not a gradient laid over content. */
+.lab-orbit-stage .stageview-canvas {
+  -webkit-mask-image: linear-gradient(to bottom, #000 84%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 84%, transparent 100%);
+}
+
+.lab-caption {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-6);
+  margin: var(--s-4) 0 0;
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  line-height: var(--t-micro-lh);
+  letter-spacing: var(--t-micro-ls);
+  text-transform: uppercase;
+  color: var(--fg-4);
+}
+
+.lab-caption strong {
+  font-weight: 400;
+  color: var(--fg);
+}
+
+.lab-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-4);
+}
+
+@media (min-width: 48rem) {
+  .lab-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.lab-two {
+  display: grid;
+  gap: var(--s-7) var(--s-5);
+}
+
+@media (min-width: 48rem) {
+  .lab-two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.lab-cell {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--r-2);
+  background: var(--surface);
+}
+
+.lab-cell-stage {
+  position: relative;
+  aspect-ratio: 1;
+}
+
+.lab-cell-stage-tall {
+  aspect-ratio: 4 / 3;
+}
+
+.lab-cell-caption {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding: var(--s-3) var(--s-4);
+  border-block-start: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  line-height: var(--t-micro-lh);
+  letter-spacing: var(--t-micro-ls);
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+
+.lab-cell-paper {
+  border-color: transparent;
+  background: var(--paper);
+}
+
+.lab-cell-paper .lab-cell-caption {
+  border-color: var(--ink-line);
+  color: var(--ink-2);
+}

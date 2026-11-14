@@ -1,0 +1,31 @@
+@layer base, ui, util;
+
+@layer ui {
+  .section-header {
+    display: grid;
+    row-gap: var(--s-5);
+    margin-bottom: clamp(var(--s-7), 7vw, var(--s-9));
+  }
+
+  .section-header-center {
+    justify-items: center;
+    text-align: center;
+  }
+
+  /* From 64rem: label in columns 1 to 4, statement in columns 6 to 12, on one baseline. */
+  @media (min-width: 64rem) {
+    .section-header-split {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: var(--grid-gap);
+      align-items: baseline;
+    }
+
+    .section-header-split > .section-header-label {
+      grid-column: 1 / span 4;
+    }
+
+    .section-header-split > .section-header-statement {
+      grid-column: 6 / span 7;
+    }
+  }
+}

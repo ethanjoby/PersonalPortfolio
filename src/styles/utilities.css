@@ -1,0 +1,296 @@
+/*
+ * Utilities: the frame, the 12-column grid, the type scale, and a few single-purpose helpers.
+ * Layer order, lowest first: base, ui, util. Section CSS is unlayered and wins over all three.
+ */
+@layer base, ui, util;
+
+@layer util {
+  /* ------------------------------------------------------------------ layout */
+
+  /* The frame: 1200px, centered, with the page gutter. Every section starts on its left edge. */
+  .wrap {
+    width: min(var(--frame), 100% - 2 * var(--gutter));
+    margin-inline: auto;
+  }
+
+  /* Vertical rhythm of a section. */
+  .section {
+    padding-block: var(--section-y);
+  }
+
+  /*
+   * 12 columns, 24px gap, mobile first: a child spans the full width until a span class says
+   * otherwise. .col-N always, .col-md-N from 48rem, .col-lg-N from 64rem.
+   * .start-md-N and .start-lg-N set the first column and combine with a span class.
+   */
+  .grid12 {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--grid-gap);
+  }
+
+  .grid12 > * {
+    grid-column: 1 / -1;
+    min-width: 0;
+  }
+
+  .col-1 { grid-column: auto / span 1; }
+  .col-2 { grid-column: auto / span 2; }
+  .col-3 { grid-column: auto / span 3; }
+  .col-4 { grid-column: auto / span 4; }
+  .col-5 { grid-column: auto / span 5; }
+  .col-6 { grid-column: auto / span 6; }
+  .col-7 { grid-column: auto / span 7; }
+  .col-8 { grid-column: auto / span 8; }
+  .col-9 { grid-column: auto / span 9; }
+  .col-10 { grid-column: auto / span 10; }
+  .col-11 { grid-column: auto / span 11; }
+  .col-12 { grid-column: auto / span 12; }
+
+  @media (min-width: 48rem) {
+    .col-md-1 { grid-column: auto / span 1; }
+    .col-md-2 { grid-column: auto / span 2; }
+    .col-md-3 { grid-column: auto / span 3; }
+    .col-md-4 { grid-column: auto / span 4; }
+    .col-md-5 { grid-column: auto / span 5; }
+    .col-md-6 { grid-column: auto / span 6; }
+    .col-md-7 { grid-column: auto / span 7; }
+    .col-md-8 { grid-column: auto / span 8; }
+    .col-md-9 { grid-column: auto / span 9; }
+    .col-md-10 { grid-column: auto / span 10; }
+    .col-md-11 { grid-column: auto / span 11; }
+    .col-md-12 { grid-column: auto / span 12; }
+
+    .start-md-1 { grid-column-start: 1; }
+    .start-md-2 { grid-column-start: 2; }
+    .start-md-3 { grid-column-start: 3; }
+    .start-md-4 { grid-column-start: 4; }
+    .start-md-5 { grid-column-start: 5; }
+    .start-md-6 { grid-column-start: 6; }
+    .start-md-7 { grid-column-start: 7; }
+    .start-md-8 { grid-column-start: 8; }
+    .start-md-9 { grid-column-start: 9; }
+    .start-md-10 { grid-column-start: 10; }
+    .start-md-11 { grid-column-start: 11; }
+    .start-md-12 { grid-column-start: 12; }
+  }
+
+  @media (min-width: 64rem) {
+    .col-lg-1 { grid-column: auto / span 1; }
+    .col-lg-2 { grid-column: auto / span 2; }
+    .col-lg-3 { grid-column: auto / span 3; }
+    .col-lg-4 { grid-column: auto / span 4; }
+    .col-lg-5 { grid-column: auto / span 5; }
+    .col-lg-6 { grid-column: auto / span 6; }
+    .col-lg-7 { grid-column: auto / span 7; }
+    .col-lg-8 { grid-column: auto / span 8; }
+    .col-lg-9 { grid-column: auto / span 9; }
+    .col-lg-10 { grid-column: auto / span 10; }
+    .col-lg-11 { grid-column: auto / span 11; }
+    .col-lg-12 { grid-column: auto / span 12; }
+
+    .start-lg-1 { grid-column-start: 1; }
+    .start-lg-2 { grid-column-start: 2; }
+    .start-lg-3 { grid-column-start: 3; }
+    .start-lg-4 { grid-column-start: 4; }
+    .start-lg-5 { grid-column-start: 5; }
+    .start-lg-6 { grid-column-start: 6; }
+    .start-lg-7 { grid-column-start: 7; }
+    .start-lg-8 { grid-column-start: 8; }
+    .start-lg-9 { grid-column-start: 9; }
+    .start-lg-10 { grid-column-start: 10; }
+    .start-lg-11 { grid-column-start: 11; }
+    .start-lg-12 { grid-column-start: 12; }
+  }
+
+  /*
+   * A reserved place for a wireframe figure. Set the shape with --slot-ratio. While the slot is
+   * empty it shows a dashed outline; once it holds a stage the outline is gone.
+   */
+  .figure-slot {
+    display: block;
+    width: 100%;
+    aspect-ratio: var(--slot-ratio, 4 / 3);
+    min-width: 0;
+  }
+
+  .figure-slot:empty {
+    border: 1px dashed var(--tone-line-strong);
+    border-radius: var(--r-2);
+  }
+
+  /* -------------------------------------------------------------------- type */
+
+  /* One class per step of the scale. Display face for headings, text face for copy, mono for readouts. */
+  .t-hero {
+    font-family: var(--font-display);
+    font-size: var(--t-hero);
+    font-weight: 400;
+    line-height: var(--t-hero-lh);
+    letter-spacing: var(--t-hero-ls);
+  }
+
+  .t-h2 {
+    font-family: var(--font-display);
+    font-size: var(--t-h2);
+    font-weight: 400;
+    line-height: var(--t-h2-lh);
+    letter-spacing: var(--t-h2-ls);
+  }
+
+  .t-h3 {
+    font-family: var(--font-display);
+    font-size: var(--t-h3);
+    font-weight: 400;
+    line-height: var(--t-h3-lh);
+    letter-spacing: var(--t-h3-ls);
+  }
+
+  .t-h4 {
+    font-family: var(--font-display);
+    font-size: var(--t-h4);
+    font-weight: 400;
+    line-height: var(--t-h4-lh);
+    letter-spacing: var(--t-h4-ls);
+  }
+
+  .t-lead {
+    font-family: var(--font-text);
+    font-size: var(--t-lead);
+    font-weight: 400;
+    line-height: var(--t-lead-lh);
+    letter-spacing: var(--t-lead-ls);
+  }
+
+  .t-body {
+    font-family: var(--font-text);
+    font-size: var(--t-body);
+    font-weight: 400;
+    line-height: var(--t-body-lh);
+    letter-spacing: var(--t-body-ls);
+  }
+
+  .t-small {
+    font-family: var(--font-text);
+    font-size: var(--t-small);
+    font-weight: 400;
+    line-height: var(--t-small-lh);
+    letter-spacing: var(--t-small-ls);
+  }
+
+  .t-label {
+    font-family: var(--font-mono);
+    font-size: var(--t-label);
+    font-weight: 400;
+    line-height: var(--t-label-lh);
+    letter-spacing: var(--t-label-ls);
+    text-transform: uppercase;
+  }
+
+  .t-micro {
+    font-family: var(--font-mono);
+    font-size: var(--t-micro);
+    font-weight: 400;
+    line-height: var(--t-micro-lh);
+    letter-spacing: var(--t-micro-ls);
+    text-transform: uppercase;
+  }
+
+  .t-code {
+    font-family: var(--font-mono);
+    font-size: var(--t-code);
+    font-weight: 400;
+    line-height: var(--t-code-lh);
+    letter-spacing: 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* The readout label: mono, uppercase, muted. Names data; never used for sentences. */
+  .mono-label {
+    color: var(--tone-fg-3);
+    font-family: var(--font-mono);
+    font-size: var(--t-label);
+    font-weight: 400;
+    line-height: var(--t-label-lh);
+    letter-spacing: var(--t-label-ls);
+    text-transform: uppercase;
+  }
+
+  /* Text tones, read from the surface the element sits on (white steps on dark, ink steps on paper). */
+  .tone-1 {
+    color: var(--tone-fg);
+  }
+
+  .tone-2 {
+    color: var(--tone-fg-2);
+  }
+
+  .tone-3 {
+    color: var(--tone-fg-3);
+  }
+
+  .tone-4 {
+    color: var(--tone-fg-4);
+  }
+
+  /* A text link: underlined, so it never depends on tone alone. */
+  .link {
+    color: var(--tone-fg);
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--tone-line-strong);
+    text-underline-offset: 0.22em;
+    transition: text-decoration-color var(--dur-hover-out) var(--ease-feedback);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .link:hover {
+      text-decoration-color: currentColor;
+      transition-duration: var(--dur-hover-in);
+    }
+  }
+
+  .link:active {
+    opacity: var(--press-opacity);
+  }
+
+  /* ----------------------------------------------------------------- surface */
+
+  /*
+   * Fine grain for paper surfaces: sparse ink specks, so the sheet stays as bright as --paper
+   * (the layer darkens it by about 2% on average). The noise sits above the surface fill and
+   * below its content, and never takes pointer events. Sets position and isolation on the
+   * element it is added to.
+   */
+  .grain {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 6 -3.3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 240px 240px;
+    opacity: 0.12;
+    pointer-events: none;
+  }
+
+  /* --------------------------------------------------------------- a11y */
+
+  /* In the accessibility tree, not on screen. */
+  .visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: -1px !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    border: 0 !important;
+    clip-path: inset(50%) !important;
+    white-space: nowrap !important;
+  }
+}

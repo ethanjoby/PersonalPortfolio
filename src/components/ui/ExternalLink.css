@@ -1,0 +1,18 @@
+@layer base, ui, util;
+
+@layer ui {
+  /* Underline, tone and press come from the .link utility. */
+  .ext-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3em;
+    min-height: var(--hit-min);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .ext-link:hover .arrow-icon {
+      translate: var(--nudge-x) var(--nudge-y);
+      transition-duration: var(--dur-hover-in);
+    }
+  }
+}

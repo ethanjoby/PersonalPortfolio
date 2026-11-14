@@ -1,0 +1,56 @@
+@layer base, ui, util;
+
+@layer ui {
+  .statement {
+    /* How many words are mid-brightening at once. */
+    --statement-soft: 3;
+
+    max-width: 24ch;
+    color: var(--tone-fg);
+    font-family: var(--font-display);
+    font-size: var(--t-h2);
+    font-weight: 400;
+    line-height: var(--t-h2-lh);
+    letter-spacing: var(--t-h2-ls);
+    text-wrap: balance;
+  }
+
+  h3.statement {
+    font-size: var(--t-h3);
+    line-height: var(--t-h3-lh);
+    letter-spacing: var(--t-h3-ls);
+  }
+
+  /* Centered statements are short runs of sentences: give them room to stay on one line. */
+  .statement-center {
+    max-width: 36ch;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  /*
+   * Only while the script is driving it (data-live). --statement-p runs 0 to 1 with the scroll;
+   * word i of n goes from --dim to 1 as p passes it, --statement-soft words at a time.
+   */
+  .statement[data-live] .statement-word {
+    opacity: clamp(
+      var(--dim),
+      var(--dim) + (1 - var(--dim)) *
+        (var(--statement-p, 1) * (var(--statement-n) + var(--statement-soft)) - var(--statement-i)) /
+        var(--statement-soft),
+      1
+    );
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .statement .statement-word {
+      opacity: 1 !important;
+    }
+  }
+
+  @media print {
+    .statement .statement-word {
+      opacity: 1 !important;
+    }
+  }
+}

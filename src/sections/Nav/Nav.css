@@ -1,0 +1,270 @@
+/*
+ * Nav: fixed, solid, 64px. Wordmark left, sans links centered, two actions right.
+ * Below 48rem it is the wordmark plus a Menu button that opens a full-width list.
+ * Section CSS is unlayered: it wins over the shared layers.
+ */
+
+/* Sits at the very top of the document. When it leaves the viewport the page has scrolled. */
+.nav-sentinel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: var(--s-2);
+  pointer-events: none;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: var(--z-nav);
+  background-color: var(--bg);
+}
+
+/* The hairline: there once the page has scrolled, or while the menu is open. Opacity only. */
+.nav::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background-color: var(--line);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-hover-out) var(--ease);
+}
+
+.nav[data-scrolled='true']::after,
+.nav[data-open='true']::after {
+  opacity: 1;
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  height: var(--nav-h);
+}
+
+/* Wordmark */
+.nav-wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-height: var(--hit-min);
+  color: var(--fg);
+  font-family: var(--font-display);
+  font-size: var(--t-lead);
+  line-height: 1;
+  letter-spacing: var(--t-h4-ls);
+  white-space: nowrap;
+}
+
+.nav-wordmark:active {
+  opacity: var(--press-opacity);
+}
+
+/* Links (from 48rem) */
+.nav-links,
+.nav-actions {
+  display: none;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--control-h);
+  padding: 0 var(--s-3);
+  color: var(--fg-3);
+  font-size: var(--t-small);
+  line-height: 1;
+  letter-spacing: var(--t-small-ls);
+  white-space: nowrap;
+  transition: color var(--dur-hover-out) var(--ease-feedback);
+}
+
+/* The section in view: white, and underlined so it never rests on tone alone. */
+.nav-link-text {
+  position: relative;
+  display: inline-block;
+  padding-block: var(--s-2);
+}
+
+.nav-link-text::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background-color: currentColor;
+  opacity: 0;
+  transition: opacity var(--dur-hover-out) var(--ease-feedback);
+}
+
+.nav-link[aria-current],
+.nav-menu-link[aria-current] {
+  color: var(--fg);
+}
+
+[aria-current] > .nav-link-text::after {
+  opacity: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nav-link:hover,
+  .nav-menu-link:hover {
+    color: var(--fg);
+    transition-duration: var(--dur-hover-in);
+  }
+}
+
+.nav-link:active,
+.nav-menu-link:active {
+  opacity: var(--press-opacity);
+}
+
+.nav-actions {
+  align-items: center;
+  gap: var(--s-2);
+}
+
+/* GitHub joins the bar from 64rem; between 48rem and 64rem there is no room for it. */
+.nav-github {
+  display: none;
+}
+
+/* Menu button (below 48rem) */
+.nav-menu-button .btn-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.nav-menu-glyph {
+  flex: none;
+  width: 1em;
+  height: 1em;
+  stroke: currentColor;
+  stroke-width: 1.25;
+  stroke-linecap: round;
+}
+
+.nav-menu-glyph path {
+  transform-box: view-box;
+  transform-origin: 50% 50%;
+  transition: transform var(--dur-quick) var(--ease);
+}
+
+/* Open: the two lines cross. The shape changes with the state, not only the tone. */
+.nav-menu-button[aria-expanded='true'] .nav-menu-glyph-a {
+  transform: translateY(2px) rotate(45deg);
+}
+
+.nav-menu-button[aria-expanded='true'] .nav-menu-glyph-b {
+  transform: translateY(-2px) rotate(-45deg);
+}
+
+/* Menu panel: full width, solid, under the bar */
+.nav-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  max-height: calc(100vh - var(--nav-h));
+  max-height: calc(100svh - var(--nav-h));
+  padding-block: var(--s-2) var(--s-5);
+  overflow-y: auto;
+  border-bottom: 1px solid var(--line);
+  background-color: var(--bg);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(calc(-1 * var(--s-2)));
+  /* Leaving: faster, and hidden from focus and assistive technology once it has faded. */
+  transition:
+    opacity var(--dur-hover-out) var(--ease-exit),
+    transform var(--dur-hover-out) var(--ease-exit),
+    visibility 0s linear var(--dur-hover-out);
+}
+
+.nav[data-open='true'] .nav-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    opacity var(--dur-quick) var(--ease),
+    transform var(--dur-quick) var(--ease),
+    visibility 0s linear 0s;
+}
+
+.nav-menu-list {
+  display: grid;
+}
+
+.nav-menu-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  min-height: var(--hit-touch);
+  color: var(--fg-2);
+  font-size: var(--t-body);
+  line-height: 1;
+  transition: color var(--dur-hover-out) var(--ease-feedback);
+}
+
+.nav-menu-link .arrow-icon {
+  color: var(--fg-3);
+}
+
+.nav-menu-actions {
+  display: flex;
+  margin-top: var(--s-4);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--line);
+}
+
+/* Without JavaScript the Menu button cannot open anything: show the one action instead. */
+html:not(.js-reveal) .nav-menu-button {
+  display: none;
+}
+
+html:not(.js-reveal) .nav-actions {
+  display: flex;
+}
+
+@media (min-width: 48rem) {
+  .nav-bar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  }
+
+  .nav-links {
+    display: block;
+  }
+
+  .nav-actions {
+    display: flex;
+    justify-self: end;
+  }
+
+  .nav-menu-button,
+  .nav-menu {
+    display: none;
+  }
+}
+
+@media (min-width: 64rem) {
+  .nav-github {
+    display: inline-flex;
+  }
+}

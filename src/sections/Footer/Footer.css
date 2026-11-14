@@ -1,0 +1,94 @@
+/* Footer: wordmark left, two mono-headed columns right. */
+
+.footer {
+  padding-block: var(--s-9) var(--s-7);
+  border-top: 1px solid var(--line);
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-7) var(--grid-gap);
+}
+
+.footer-wordmark {
+  display: inline-flex;
+  grid-column: 1 / -1;
+  align-items: center;
+  justify-self: start;
+  gap: 0.3em;
+  min-height: var(--hit-touch);
+  color: var(--fg);
+  font-family: var(--font-display);
+  font-size: var(--t-h2);
+  line-height: var(--t-h2-lh);
+  letter-spacing: var(--t-h2-ls);
+}
+
+.footer-wordmark:active {
+  opacity: var(--press-opacity);
+}
+
+.footer-col {
+  min-width: 0;
+}
+
+.footer-list {
+  display: grid;
+  justify-items: start;
+  margin-top: var(--s-4);
+}
+
+/* Footer links are plain until hovered: the column heading already says they are links. */
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--hit-min);
+  color: var(--fg-2);
+  font-size: var(--t-small);
+  line-height: var(--t-small-lh);
+  letter-spacing: var(--t-small-ls);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.22em;
+  overflow-wrap: anywhere;
+  transition:
+    color var(--dur-hover-out) var(--ease-feedback),
+    text-decoration-color var(--dur-hover-out) var(--ease-feedback);
+}
+
+.footer-link .arrow-icon {
+  color: var(--fg-3);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .footer-link:hover {
+    color: var(--fg);
+    text-decoration-color: currentColor;
+    transition-duration: var(--dur-hover-in);
+  }
+}
+
+.footer-link:active {
+  opacity: var(--press-opacity);
+}
+
+@media (min-width: 48rem) {
+  .footer-top {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  .footer-wordmark {
+    grid-column: 1 / span 6;
+    align-self: start;
+  }
+
+  .footer-col-sections {
+    grid-column: 8 / span 2;
+  }
+
+  .footer-col-elsewhere {
+    grid-column: 10 / span 3;
+  }
+}

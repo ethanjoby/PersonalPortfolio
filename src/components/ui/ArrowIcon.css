@@ -1,0 +1,39 @@
+@layer base, ui, util;
+
+@layer ui {
+  .arrow-icon {
+    --nudge-x: var(--nudge);
+    --nudge-y: 0px;
+
+    display: inline-block;
+    flex: none;
+    width: 1em;
+    height: 1em;
+    overflow: visible;
+    stroke: currentColor;
+    stroke-width: 1.25;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+    /* The nudge is applied by the control that holds the arrow (Button, ExternalLink, Sheet row). */
+    transition: translate var(--dur-hover-out) var(--ease-feedback);
+  }
+
+  .arrow-icon path {
+    vector-effect: non-scaling-stroke;
+  }
+
+  .arrow-icon[data-dir='up-right'] {
+    --nudge-x: calc(var(--nudge) * 0.7);
+    --nudge-y: calc(var(--nudge) * -0.7);
+
+    rotate: -45deg;
+  }
+
+  .arrow-icon[data-dir='down'] {
+    --nudge-x: 0px;
+    --nudge-y: var(--nudge);
+
+    rotate: 90deg;
+  }
+}

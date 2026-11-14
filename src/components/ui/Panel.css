@@ -1,0 +1,31 @@
+@layer base, ui, util;
+
+@layer ui {
+  .panel {
+    min-width: 0;
+    border: 1px solid var(--tone-line);
+    border-radius: var(--r-2);
+    background-color: var(--tone-surface);
+  }
+
+  /* Paper needs no outline: the fill is the edge. */
+  .panel[data-tone='paper'] {
+    border-color: transparent;
+  }
+
+  .panel-r3 {
+    border-radius: var(--r-3);
+  }
+
+  .panel-r4 {
+    border-radius: var(--r-4);
+  }
+
+  .panel-pad-md {
+    padding: var(--s-5);
+  }
+
+  .panel-pad-lg {
+    padding: clamp(var(--s-5), 4vw, var(--s-7));
+  }
+}

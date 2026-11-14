@@ -1,0 +1,85 @@
+@layer base, ui, util;
+
+@layer ui {
+  .btn {
+    /* Ghost is the base: no fill until hovered. Variants only swap these four values. */
+    --btn-bg: transparent;
+    --btn-bg-hover: var(--tone-fill);
+    --btn-fg: var(--tone-fg-2);
+    --btn-fg-hover: var(--tone-fg);
+
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    gap: var(--s-2);
+    min-width: var(--control-h);
+    min-height: var(--control-h);
+    padding: 0 var(--s-3);
+    /* Transparent here; becomes the visible edge in forced-colors mode. */
+    border: 1px solid transparent;
+    border-radius: var(--r-1);
+    background-color: var(--btn-bg);
+    color: var(--btn-fg);
+    font-family: var(--font-text);
+    font-size: var(--t-small);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: var(--t-small-ls);
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    /* Release: 200ms for the fill, 150ms for the press. Hover and press shorten these below. */
+    transition:
+      background-color var(--dur-hover-out) var(--ease-feedback),
+      color var(--dur-hover-out) var(--ease-feedback),
+      opacity var(--dur-press-out) var(--ease-feedback),
+      transform var(--dur-press-out) var(--ease-feedback);
+  }
+
+  .btn-primary {
+    --btn-bg: var(--tone-action);
+    --btn-bg-hover: var(--tone-action-hover);
+    --btn-fg: var(--tone-on-action);
+    --btn-fg-hover: var(--tone-on-action);
+  }
+
+  .btn-secondary {
+    --btn-bg: var(--tone-fill);
+    --btn-bg-hover: var(--tone-fill-hover);
+  }
+
+  /* Hover: a fill change in 80ms that never moves the control. The arrow may nudge 3px. */
+  @media (hover: hover) and (pointer: fine) {
+    .btn:hover:where(:not(:disabled, [aria-disabled='true'])) {
+      --btn-bg: var(--btn-bg-hover);
+      --btn-fg: var(--btn-fg-hover);
+
+      transition-duration: var(--dur-hover-in), var(--dur-hover-in), var(--dur-press-out), var(--dur-press-out);
+    }
+
+    .btn:hover:where(:not(:disabled, [aria-disabled='true'])) .arrow-icon {
+      translate: var(--nudge-x) var(--nudge-y);
+      transition-duration: var(--dur-hover-in);
+    }
+  }
+
+  /* Press: scale 0.98 and opacity 0.9 in 80ms. */
+  .btn:active:where(:not(:disabled, [aria-disabled='true'])) {
+    opacity: var(--press-opacity);
+    transform: scale(var(--press-scale));
+    transition-duration: var(--dur-hover-in), var(--dur-hover-in), var(--dur-press-in), var(--dur-press-in);
+  }
+
+  .btn:disabled,
+  .btn[aria-disabled='true'] {
+    opacity: var(--disabled-opacity);
+    cursor: not-allowed;
+  }
+
+  /* The label keeps its own box so the arrow can move without touching it. */
+  .btn-label {
+    display: inline-block;
+  }
+}
